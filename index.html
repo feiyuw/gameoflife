@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <title>Game of Life</title>
+</head>
+<body style="background-color:darkolivegreen">
+  <pre id="board" style="color:white">
+  </pre>
+  <script>
+    var board = document.getElementById('board');
+
+    function updateBoard() {
+      fetch('/gol')
+        .then(function(res) {
+          if (!res.ok) {
+            console.warn('failed to fetch data!');
+            return;
+          }
+          res.json().then(function(players) {
+            board.innerHTML = players.map(function(d) {
+              return d.map(function(e) {
+                return {0:'-', 1:'&#9830;'}[e]
+              }).join(' ')
+            }).join('\n');
+          })
+        });
+    }
+
+    window.onload = function() {
+      setInterval(updateBoard, 250);
+    };
+  </script>
+</body>
+</html>
