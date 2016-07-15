@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <title>Game of Life (ReactJS)</title>
+  <style>
+    html {
+      background-color: #fdf6e3;
+    }
+    .table{
+      display: table;
+      width: auto;
+      opacity: 0.8;
+      padding: 1em;
+    }
+    .row{
+      width: auto;
+      height: 0.5em;
+      clear: both;
+    }
+    .cell{
+      float: left;
+      display: table;
+      height: 100%;
+      width: 0.5em;
+      border: 1px dotted lightgray;
+    }
+    .cell[data="1"] {
+      background-color:green;
+    }
+    .cell[data="0"] {
+      background-color:white;
+    }
+  </style>
+</head>
+<body>
+  <div id="board"></div>
+  <script src="gol.react.bundle.js"></script>
+</body>
+</html>
