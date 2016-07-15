@@ -84,10 +84,8 @@ function arrayToObject(arr) {
 
 class Cell extends Component {
   render() {
-    let color = this.props.v===1 ? 'green': 'white';
-
     return (
-      <td style={{backgroundColor:color}}> </td>
+      <div className="cell" {...this.props}></div>
     )
   }
 }
@@ -96,11 +94,11 @@ class Cell extends Component {
 class Row extends Component {
   render() {
     let cells = this.props.cells.map(function(c, k) {
-      return <Cell v={c} key={k}/>;
+      return <Cell data={c} key={k}/>;
     });
 
     return (
-      <tr>{cells}</tr>
+      <div className="row">{cells}</div>
     )
   }
 }
@@ -160,9 +158,9 @@ class App extends Component{
           <input id="delay" type="text" value={this.state.delay} onChange={this.onDelayChange}/>
           <button onClick={this.onPlay}>Play</button>
         </div>
-        <table>
-          <tbody>{rows}</tbody>
-        </table>
+        <div className="table">
+          {rows}
+        </div>
       </div>
     );
   }

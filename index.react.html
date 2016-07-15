@@ -8,12 +8,28 @@
     html {
       background-color: #fdf6e3;
     }
-    table {
-      padding: 1em;
+    .table{
+      display: table;
+      width: auto;
+      opacity: 0.8;
     }
-    td {
-      width: 0.5em;
+    .row{
+      width: auto;
       height: 0.5em;
+      clear: both;
+    }
+    .cell{
+      float: left;
+      display: table;
+      height: 100%;
+      width: 0.5em;
+      border: 1px dotted lightgray;
+    }
+    .cell[data="1"] {
+      background-color:green;
+    }
+    .cell[data="0"] {
+      background-color:white;
     }
   </style>
 </head>
