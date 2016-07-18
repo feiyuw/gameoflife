@@ -197,17 +197,17 @@
 	  _createClass(App, [{
 	    key: 'onRowsChange',
 	    value: function onRowsChange(e) {
-	      this.setState({ rows: parseInt(e.target.value) });
+	      this.setState({ rows: parseInt(e.target.value) || '' });
 	    }
 	  }, {
 	    key: 'onColsChange',
 	    value: function onColsChange(e) {
-	      this.setState({ cols: parseInt(e.target.value) });
+	      this.setState({ cols: parseInt(e.target.value) || '' });
 	    }
 	  }, {
 	    key: 'onDelayChange',
 	    value: function onDelayChange(e) {
-	      this.setState({ delay: parseInt(e.target.value) });
+	      this.setState({ delay: parseInt(e.target.value) || '' });
 	    }
 	  }, {
 	    key: 'onPlay',
