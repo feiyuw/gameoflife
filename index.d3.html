@@ -30,9 +30,9 @@
     var intervalEvt = undefined;
 
     function updateBoard() {
-      var rows = parseInt(document.getElementById('rows').value);
-      var cols = parseInt(document.getElementById('cols').value);
-      var delay = parseInt(document.getElementById('delay').value);
+      var rows = parseInt(document.getElementById('rows').value) || '';
+      var cols = parseInt(document.getElementById('cols').value) || '';
+      var delay = parseInt(document.getElementById('delay').value) || '';
       var game = new GameOfLife(rows, cols);
 
       game.initBoard();
