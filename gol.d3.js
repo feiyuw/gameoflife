@@ -93,16 +93,12 @@ function Board(container) {
             return d.x * (chart.r * 2 + chart.border) + chart.top;
           })
           .attr('r', chart.r)
-          .attr('fill', function(d) {
-            return d.v === 1 ? 'green': 'white';
-          });
+          .attr('data', (d) => d.v);
 
     // Update
     svg.selectAll('circle')
       .data(data)
-        .attr('fill', function(d) {
-          return d.v === 1 ? 'green': 'white';
-        });
+        .attr('data', (d) => d.v);
 
     // Exit
     svg.selectAll('circle')
