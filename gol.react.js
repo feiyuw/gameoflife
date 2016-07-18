@@ -115,15 +115,15 @@ class App extends Component{
   }
 
   onRowsChange(e) {
-    this.setState({rows: parseInt(e.target.value)});
+    this.setState({rows: parseInt(e.target.value) || ''});
   }
 
   onColsChange(e) {
-    this.setState({cols: parseInt(e.target.value)});
+    this.setState({cols: parseInt(e.target.value) || ''});
   }
 
   onDelayChange(e) {
-    this.setState({delay: parseInt(e.target.value)});
+    this.setState({delay: parseInt(e.target.value) || ''});
   }
 
   onPlay() {
