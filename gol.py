@@ -1,6 +1,5 @@
 import itertools
 import numpy as np
-import random
 import os
 import json
 from bottle import get, run, response, static_file
@@ -19,7 +18,7 @@ def players():
 @get('/<row>,<col>')
 def index(row, col):
     global players
-    players = np.vectorize(lambda x: random.randint(0,1))(np.empty((int(row), int(col))))
+    players = np.random.rand(int(row), int(col)).round()
     return static_file('index.html', os.path.abspath(os.path.dirname(__file__)))
 
 def get_next_round_players(players):
