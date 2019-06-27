@@ -18,28 +18,27 @@
   <pre id="board">
   </pre>
   <script>
-    const board = document.getElementById('board');
+    const board = document.getElementById('board')
 
     function updateBoard() {
       fetch('/gol')
         .then((res) => {
           if (!res.ok) {
-            console.warn('failed to fetch data!');
-            return;
+            console.warn('failed to fetch data!')
+            return
           }
           res.json().then((players) => {
             board.innerHTML = players.map((d) => {
               return d.map((e) => {
                 return {0:'&#9633;', 1:'&#9632;'}[e]
               }).join(' ')
-            }).join('\n');
+            }).join('\n')
           })
-        });
+          setTimeout(updateBoard, 250)
+        })
     }
 
-    window.onload = () => {
-      setInterval(updateBoard, 250);
-    };
+    window.onload = updateBoard
   </script>
 </body>
 </html>
