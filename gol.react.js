@@ -75,18 +75,18 @@ class App extends Component{
   interval = undefined
   lives = []
 
-  state = {loading: true}
+  state = {rows: 30, cols: 30, delay: 500, loading: true}
 
   onRowsChange = (e) => {
-    this.rows = parseInt(e.target.value) || ''
+    this.setState({rows: parseInt(e.target.value) || ''})
   }
 
   onColsChange = (e) => {
-    this.cols = parseInt(e.target.value) || ''
+    this.setState({cols: parseInt(e.target.value) || ''})
   }
 
   onDelayChange = (e) => {
-    this.delay = parseInt(e.target.value) || ''
+    this.setState({delay: parseInt(e.target.value) || ''})
   }
 
   onPlay = () => {
@@ -94,34 +94,37 @@ class App extends Component{
       clearTimeout(this.interval)
     }
 
-    const game = new GameOfLife(this.rows, this.cols)
+    const {rows, cols, delay} = this.state
+    const game = new GameOfLife(rows, cols)
     game.initBoard()
 
     const handler = () => {
       game.nextRound()
       this.lives = game.getLives()
       this.setState({loading: false})
-      this.interval = setTimeout(handler, this.delay)
+      this.interval = setTimeout(handler, delay)
     }
 
     handler()
   }
 
   render() {
+    const {rows, cols, delay, loading} = this.state
+
     return (
       <div>
         <div>
           <label>Rows:</label>
-          <input id="rows" type="text" value={this.rows} onChange={this.onRowsChange}/>
+          <input id="rows" type="text" value={rows} onChange={this.onRowsChange}/>
           <label>Cols:</label>
-          <input id="cols" type="text" value={this.cols} onChange={this.onColsChange}/>
+          <input id="cols" type="text" value={cols} onChange={this.onColsChange}/>
           <label>Delay:</label>
-          <input id="delay" type="text" value={this.delay} onChange={this.onDelayChange}/>
+          <input id="delay" type="text" value={delay} onChange={this.onDelayChange}/>
           <button onClick={this.onPlay}>Play</button>
         </div>
         <div className="table">
           {
-            this.state.loading || this.lives.map((row, k) => <Row cells={row} key={k}/>)
+            loading || this.lives.map((row, k) => <Row cells={row} key={k}/>)
           }
         </div>
       </div>
