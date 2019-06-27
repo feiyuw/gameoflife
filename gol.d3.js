@@ -60,7 +60,6 @@ class Board {
 
   render = (lives) => {
     const data = this.arrayToObject(lives)
-    console.log(data[0])
 
     this.svg.attr('height', (this.chart.r * 2 + this.chart.border) * lives.length + this.chart.top)
     // Enter
