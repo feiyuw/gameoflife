@@ -46,7 +46,8 @@ class GameOfLife {
 
 class Board {
   constructor(container) {
-    this.chart = {left: 20, top: 20, r: 5, border: 2}
+    this.chart = {left: 20, top: 20, r: 4, border: 1}
+    this.circleSize = this.chart.r * 2 + this.chart.border
     this.svg = d3.select(container).append('svg')
   }
 
@@ -61,17 +62,17 @@ class Board {
   render = (lives) => {
     const data = this.arrayToObject(lives)
 
-    this.svg.attr('height', (this.chart.r * 2 + this.chart.border) * lives.length + this.chart.top)
+    this.svg.attr('height', this.circleSize * lives.length + this.chart.top)
     // Enter
     this.svg.selectAll('circle')
       .data(data)
       .enter()
         .append('circle')
         .attr('cx', (d) => (
-            d.y * (this.chart.r * 2 + this.chart.border) + this.chart.left
+            d.y * this.circleSize + this.chart.left
           ))
         .attr('cy', (d) => (
-            d.x * (this.chart.r * 2 + this.chart.border) + this.chart.top
+            d.x * this.circleSize + this.chart.top
           ))
         .attr('r', this.chart.r)
         .attr('data', (d) => d.v)
