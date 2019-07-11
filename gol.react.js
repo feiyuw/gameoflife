@@ -69,13 +69,10 @@ const Row = ({cells}) => (
 
 
 class App extends Component{
-  rows = 30
-  cols = 30
-  delay = 500
   interval = undefined
   lives = []
 
-  state = {rows: 30, cols: 30, delay: 500, loading: true}
+  state = {rows: 30, cols: 60, delay: 200, loading: true}
 
   onRowsChange = (e) => {
     this.setState({rows: parseInt(e.target.value) || ''})
