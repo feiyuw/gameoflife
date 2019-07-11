@@ -112,11 +112,11 @@ class App extends Component{
       <div>
         <div>
           <label>Rows:</label>
-          <input id="rows" type="text" value={rows} onChange={this.onRowsChange}/>
+          <input id="rows" type="number" value={rows} onChange={this.onRowsChange}/>
           <label>Cols:</label>
-          <input id="cols" type="text" value={cols} onChange={this.onColsChange}/>
+          <input id="cols" type="number" value={cols} onChange={this.onColsChange}/>
           <label>Delay:</label>
-          <input id="delay" type="text" value={delay} onChange={this.onDelayChange}/>
+          <input id="delay" type="number" value={delay} onChange={this.onDelayChange}/>
           <button onClick={this.onPlay}>Play</button>
         </div>
         <div className="table">
