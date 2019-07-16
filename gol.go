@@ -12,7 +12,7 @@ import (
 )
 
 const (
-	INTERVAL = time.Millisecond * 200 // 200ms
+	INTERVAL = time.Millisecond * 100 // 100ms
 )
 
 var (
