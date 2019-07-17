@@ -11,6 +11,12 @@ import (
 	"time"
 )
 
+const (
+	defaultRows     = 30
+	defaultCols     = 60
+	defaultInterval = 100
+)
+
 var (
 	sb strings.Builder // string builder for drawing
 
@@ -158,19 +164,22 @@ func (g *game) next() {
 func main() {
 	var rows, cols, interval int
 
-	flag.IntVar(&rows, "r", 30, "rows count")
-	flag.IntVar(&cols, "c", 60, "columns count")
-	flag.IntVar(&interval, "i", 100, "sleep interval between iterations (ms)")
+	flag.IntVar(&rows, "r", defaultRows, "rows count")
+	flag.IntVar(&cols, "c", defaultCols, "columns count")
+	flag.IntVar(&interval, "i", defaultInterval, "sleep interval between iterations (ms)")
 	flag.Parse()
 
 	if rows <= 0 {
 		log.Printf("Invalid rows %d, use default value", rows)
+		rows = defaultRows
 	}
 	if cols <= 0 {
 		log.Printf("Invalid columns %d, use default value", cols)
+		cols = defaultCols
 	}
 	if interval <= 0 {
 		log.Printf("Invalid interval %d, use default value", interval)
+		interval = defaultInterval
 	}
 
 	g := newGame(rows, cols, interval)
