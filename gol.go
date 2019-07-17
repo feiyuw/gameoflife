@@ -1,24 +1,18 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"math/rand"
 	"os"
 	"os/signal"
-	"strconv"
 	"strings"
 	"time"
 )
 
-const (
-	INTERVAL = time.Millisecond * 100 // 100ms
-)
-
 var (
-	rows = 30            // default rows count
-	cols = 60            // default columns count
-	sb   strings.Builder // string builder for drawing
+	sb strings.Builder // string builder for drawing
 
 	clearScreen = "\u001b[2J"
 	cellAlive   = []byte("\u001b[48;5;28m  \u001b[0m")  // green
@@ -30,8 +24,9 @@ func init() {
 }
 
 type game struct {
-	rows int
-	cols int
+	rows     int
+	cols     int
+	interval time.Duration
 
 	prev    [][]bool
 	current [][]bool
@@ -39,7 +34,7 @@ type game struct {
 	frozen bool // if frozen, game will stop
 }
 
-func newGame(rows, cols int) *game {
+func newGame(rows, cols, interval int) *game {
 	prev := make([][]bool, rows)
 	current := make([][]bool, rows)
 
@@ -52,11 +47,12 @@ func newGame(rows, cols int) *game {
 	}
 
 	return &game{
-		rows:    rows,
-		cols:    cols,
-		prev:    prev,
-		current: current,
-		frozen:  false,
+		rows:     rows,
+		cols:     cols,
+		interval: time.Millisecond * time.Duration(interval),
+		prev:     prev,
+		current:  current,
+		frozen:   false,
 	}
 }
 
@@ -77,7 +73,7 @@ func (g *game) run() {
 				log.Println("lives are frozen, game stopped!")
 				return
 			}
-			time.Sleep(INTERVAL)
+			time.Sleep(g.interval)
 		}
 	}
 }
@@ -160,22 +156,23 @@ func (g *game) next() {
 }
 
 func main() {
-	var err error
+	var rows, cols, interval int
 
-	args := os.Args[1:]
-	if len(args) > 0 {
-		rows, err = strconv.Atoi(args[0])
-		if err != nil || rows <= 0 {
-			log.Printf("Invalid rows %s, use default value", args[0])
-		}
+	flag.IntVar(&rows, "r", 30, "rows count")
+	flag.IntVar(&cols, "c", 60, "columns count")
+	flag.IntVar(&interval, "i", 100, "sleep interval between iterations (ms)")
+	flag.Parse()
+
+	if rows <= 0 {
+		log.Printf("Invalid rows %d, use default value", rows)
 	}
-	if len(args) > 1 {
-		cols, err = strconv.Atoi(args[1])
-		if err != nil || cols <= 0 {
-			log.Printf("Invalid cols %s, use default value", args[1])
-		}
+	if cols <= 0 {
+		log.Printf("Invalid columns %d, use default value", cols)
+	}
+	if interval <= 0 {
+		log.Printf("Invalid interval %d, use default value", interval)
 	}
 
-	g := newGame(rows, cols)
+	g := newGame(rows, cols, interval)
 	g.run()
 }
