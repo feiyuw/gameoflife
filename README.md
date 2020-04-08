@@ -8,7 +8,7 @@
 
 ## D3JS版本
 
-* [Online Demo](//blog.zhangyu.so/gameoflife/index.d3.html)
+* [Online Demo](//zhangyu.guru/gameoflife/index.d3.html)
 * 在项目目录下执行http-server (nodejs)或python3 -m http.server 8080 (python)启动一个web服务器
 * 打开浏览器，输入地址：http://localhost:8080/index.d3.html
 * 点击Play
@@ -17,7 +17,7 @@
 
 ## ReactJS版本
 
-* [Online Demo](//blog.zhangyu.so/gameoflife/index.react.html)
+* [Online Demo](//zhangyu.guru/gameoflife/index.react.html)
 * 在GameOfLife的主逻辑上直接用了D3版本的代码
 * 显示层用了土土的div
 * 主要展示了ReactJS基于state进行render的特点
