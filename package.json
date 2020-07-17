@@ -14,7 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "if-env": "^1.0.4",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.19",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "webpack": "^4.35.0"
